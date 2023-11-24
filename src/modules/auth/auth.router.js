@@ -4,6 +4,7 @@ import * as registerController from "./controller/registration.js";
 const router = Router();
 
 router.post("/signup", registerController.signUp);
-router.post("/confirmemail/:token", registerController.confirmEmail);
+router.post("/signin", registerController.signIn);
+router.get("/confirmemail/:token", registerController.confirmEmail);
 
 export default router;
