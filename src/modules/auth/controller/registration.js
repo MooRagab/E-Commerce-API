@@ -2,7 +2,7 @@ import { userModel } from "../../../../DB/models/User.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { sendEmail } from "../../../services/email.js";
-import { asyncHandler } from "../../../services/errorHanding.js";
+import { asyncHandler } from "../../../services/errorHandling.js";
 import { findOne, findOneAndUpdate } from "../../../../DB/DBMethods.js";
 
 //SignUp Function
@@ -72,19 +72,19 @@ export const signIn = asyncHandler(async (req, res, next) => {
       next(Error("In-Valid Password", { cause: 400 }));
     } else {
       if (!user.confirmEmail) {
-        next(Error("Please Confirm Your E-mail First", { cause: 400 }));
+        next(Error("Please Confirm Your E-mail First", { cause: 422 }));
       } else {
         if (user.blocked) {
           next(
             Error("Your Account Is Blocked Contact With Us To Get More Info", {
-              cause: 400,
+              cause: 410,
             })
           );
         } else {
           const token = jwt.sign({ id: user._id }, process.env.SIGNINTOKEN, {
             expiresIn: 60 * 60 * 24,
           });
-          res.status(200).json({ message: "Done Signing", token });
+          res.status(200).json({ message: "Done!", token });
         }
       }
     }

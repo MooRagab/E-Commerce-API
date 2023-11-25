@@ -9,7 +9,7 @@ dotenv.config({ path: path.join(__dirname, "./config/.env") });
 import express from "express";
 import * as indexRouter from "./src/modules/index.router.js";
 import connectDB from "./DB/connection.js";
-import { globalErrorHandler } from "./src/services/errorHanding.js";
+import { globalErrorHandler } from "./src/services/errorHandling.js";
 import morgan from "morgan";
 const app = express();
 
@@ -19,8 +19,9 @@ const baseUrl = process.env.BASEURL;
 
 //Convert BufferData to JSON
 app.use(express.json());
-app.use(morgan("dev"));
+
 //SetUp API Routings
+app.use(morgan("dev"));
 app.use(`${baseUrl}/auth`, indexRouter.authRouter);
 app.use(`${baseUrl}/user`, indexRouter.userRouter);
 app.use(`${baseUrl}/product`, indexRouter.productRouter);
