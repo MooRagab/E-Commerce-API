@@ -1,10 +1,10 @@
+import { Router } from 'express'
+import { auth } from '../../middleware/auth.js'
+import * as userController from './controller/user.js'
+import { endPoint } from './user.endPoint.js'
 
-import { Router } from "express";
+const router = Router()
 
-const router = Router();
+router.get('/', auth(endPoint.profile), userController.profile)
 
-router.get("/", (req, res) => {
-  res.json({ message: "User Router" });
-});
-
-export default router;
+export default router

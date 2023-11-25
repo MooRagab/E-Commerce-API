@@ -1,9 +1,9 @@
-import { Router } from "express";
+import { Router } from 'express'
 
-const router = Router();
+const router = Router()
 
-router.get("/", (req, res) => {
-  res.json({ message: "Cart Router" });
-});
+router.get('/', (req, res) => {
+  res.json({ message: 'Cart Router' })
+})
 
-export default router;
+export default router

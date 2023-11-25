@@ -4,7 +4,7 @@ export const find = async ({
   model,
   filter = {},
   populate = [],
-  select = "",
+  select = '',
   skip = 0,
   limit = 10,
 } = {}) => {
@@ -13,29 +13,29 @@ export const find = async ({
     .limit(limit)
     .skip(skip)
     .select(select)
-    .populate(populate);
-  return result;
-};
+    .populate(populate)
+  return result
+}
 
 export const findOne = async ({
   model,
   filter = {},
   populate = [],
-  select = "",
+  select = '',
 } = {}) => {
-  const result = await model.findOne(filter).select(select).populate(populate);
-  return result;
-};
+  const result = await model.findOne(filter).select(select).populate(populate)
+  return result
+}
 
 export const findById = async ({
   model,
   filter = {},
   populate = [],
-  select = "",
+  select = '',
 } = {}) => {
-  const result = await model.findById(filter).select(select).populate(populate);
-  return result;
-};
+  const result = await model.findById(filter).select(select).populate(populate)
+  return result
+}
 
 //Update
 
@@ -44,35 +44,35 @@ export const findOneAndUpdate = async ({
   filter = {},
   data = {},
   options = {},
-  select = "",
+  select = '',
   populate = [],
 } = {}) => {
   const result = await model
     .findOneAndUpdate(filter, data, options)
     .select(select)
-    .populate(populate);
-  return result;
-};
+    .populate(populate)
+  return result
+}
 
 export const findByIdAndUpdate = async ({
   model,
   filter = {},
   data = {},
   options = {},
-  select = "",
+  select = '',
   populate = [],
 } = {}) => {
   const result = await model
     .findByIdAndUpdate(filter, data, options)
     .select(select)
-    .populate(populate);
-  return result;
-};
+    .populate(populate)
+  return result
+}
 
 export const updateOne = async ({ model, filter = {}, data = {} } = {}) => {
-  const result = await model.updateOne(filter, data);
-  return result;
-};
+  const result = await model.updateOne(filter, data)
+  return result
+}
 
 //Delete
 
@@ -80,54 +80,54 @@ export const findOneAndDelete = async ({
   model,
   filter = {},
   data = {},
-  select = "",
+  select = '',
   populate = [],
 } = {}) => {
   const result = await model
     .findOneAndDelete(filter, data)
     .select(select)
-    .populate(populate);
-  return result;
-};
+    .populate(populate)
+  return result
+}
 
 export const findByIdAndDelete = async ({
   model,
   filter = {},
   data = {},
-  select = "",
+  select = '',
   populate = [],
 } = {}) => {
   const result = await model
     .findByIdAndDelete(filter, data)
     .select(select)
-    .populate(populate);
-  return result;
-};
+    .populate(populate)
+  return result
+}
 
 export const deleteOne = async ({ model, filter = {}, data = {} } = {}) => {
-  const result = await model.deleteOne(filter, data);
-  return result;
-};
+  const result = await model.deleteOne(filter, data)
+  return result
+}
 
 //create
 
 export const create = async ({
   model,
   data = {},
-  select = "",
+  select = '',
   populate = [],
 } = {}) => {
-  const result = await model.create(data);
-  return result;
-};
+  const result = await model.create(data)
+  return result
+}
 
 export const createAndSave = async ({ model, data = {} } = {}) => {
-  const newObj = new model(data);
-  const savedObj = await newObj.save();
-  return savedObj;
-};
+  const newObj = new model(data)
+  const savedObj = await newObj.save()
+  return savedObj
+}
 
 export const insertMany = async ({ model, data = [{}] } = {}) => {
-  const result = await model.insertMany(data);
-  return result;
-};
+  const result = await model.insertMany(data)
+  return result
+}

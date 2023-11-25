@@ -1,14 +1,14 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer'
 
 export async function sendEmail(dest, subject, message, attachments = []) {
   let transporter = nodemailer.createTransport({
-    service: "Gmail",
+    service: 'Gmail',
     secure: true,
     auth: {
       user: process.env.NODEMAILEREMAIL,
       pass: process.env.NODEMAILERPASSWORD,
     },
-  });
+  })
 
   let info = await transporter.sendMail({
     from: `"RAGAB" <${process.env.NODEMAILEREMAIL}>`,
@@ -16,6 +16,6 @@ export async function sendEmail(dest, subject, message, attachments = []) {
     subject,
     html: message,
     attachments,
-  });
-  return info;
+  })
+  return info
 }
