@@ -7,7 +7,7 @@ export const validation = (schema) => {
       dataMethod.forEach((key, i) => {
         if (schema[key]) {
           const validationResult = schema[key].validate(req[key], {
-            abortEarly: false,
+            abortEarly: false,  
           });
           if (validationResult?.error?.details) {
             validationArr.push(validationResult.error.details);
