@@ -1,9 +1,23 @@
 import { Router } from 'express'
+import endPoint from './brand.endPoint.js'
+import { auth } from '../../middleware/auth.js'
+import * as brandController from './controller/brand.js'
+import { fileValidation, myMulter } from '../../services/multer.js'
 
-const router = Router()
+const router = Router({ mergeParams: true })
 
-router.get('/', (req, res) => {
-  res.json({ message: 'Brand Router' })
-})
+router.post(
+  '/',
+  auth(endPoint.add),
+  myMulter(fileValidation.image).single('image'),
+  brandController.addBrand,
+)
+
+router.put(
+  '/:id',
+  auth(endPoint.update),
+  myMulter(fileValidation.image).single('image'),
+  brandController.updateBrand,
+)
 
 export default router

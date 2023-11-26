@@ -1,6 +1,5 @@
 import {
   create,
-  find,
   findById,
   findByIdAndUpdate,
   findOne,
@@ -9,7 +8,6 @@ import categoryModel from '../../../../DB/models/Category.model.js'
 import cloudinary from '../../../services/cloudinary.js'
 import { asyncHandler } from '../../../services/errorHandling.js'
 import slugify from 'slugify'
-import { paginate } from '../../../services/pagination.js'
 import subcategoryModel from '../../../../DB/models/Subcategory.model.js'
 
 //Add A New SubCategory
@@ -88,37 +86,3 @@ export const updateSubCategory = asyncHandler(async (req, res, next) => {
   }
 })
 
-//Get All Categories
-
-// export const getAllSubCategories = asyncHandler(async (req, res, next) => {
-//   const { skip, limit } = paginate({
-//     page: req.query.page,
-//     size: req.query.size,
-//   })
-//   const subCategory = await find({
-//     model: categoryModel,
-//     populate: [
-//       { path: 'createdBy', select: 'userName , email , image' },
-//       { path: 'updatedBy', select: 'userName , email , image' },
-//     ],
-//     skip,
-//     limit,
-//   })
-//   res.status(200).json({ message: 'Done', subCategory })
-// })
-
-//Get Category By Id
-
-export const getSubCategoryById = asyncHandler(async (req, res, next) => {
-  const { id } = req.params
-
-  const subCategory = await findById({
-    model: categoryModel,
-    filter: { _id: id },
-  })
-  if (!subCategory) {
-    next(new Error('Cant Find This SubCategory '), { cause: 400 })
-  } else {
-    res.status(200).json({ message: 'Done', subCategory })
-  }
-})

@@ -6,7 +6,7 @@ const brandSchema = new Schema(
       type: String,
       required: [true, 'name is required'],
       unique: [true, 'category name must be unique'],
-      min: [2, 'minimum length 2 char'],
+      min: [1, 'minimum length 2 char'],
       max: [20, 'max length 2 char'],
     },
     slug: String,

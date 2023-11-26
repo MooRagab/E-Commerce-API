@@ -20,7 +20,4 @@ router.put(
   subCategoryController.updateSubCategory,
 )
 
-// router.get('/', subCategoryController.getAllSubCategories)
-// router.get('/:id', subCategoryController.getSubCategoryById)
-
 export default router
