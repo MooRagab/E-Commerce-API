@@ -1,4 +1,9 @@
-import { create, find, findByIdAndUpdate } from '../../../../DB/DBMethods.js'
+import {
+  create,
+  find,
+  findById,
+  findByIdAndUpdate,
+} from '../../../../DB/DBMethods.js'
 import categoryModel from '../../../../DB/models/Category.model.js'
 import cloudinary from '../../../services/cloudinary.js'
 import { asyncHandler } from '../../../services/errorHandling.js'
@@ -7,7 +12,7 @@ import { paginate } from '../../../services/pagination.js'
 
 //Add A New Category
 
-export const addCategory = asyncHandler(async (req, res, next) => {
+export const createCategory = asyncHandler(async (req, res, next) => {
   if (!req.file) {
     next(new Error('Image Is Required'), { cause: 400 })
   } else {
@@ -28,7 +33,7 @@ export const addCategory = asyncHandler(async (req, res, next) => {
     })
     category
       ? res.status(201).json({ message: 'Done', category })
-      : next(new Error('Fail To Add New Category'), { cause: 400 })
+      : next(new Error('Fail To Create New Category'), { cause: 400 })
   }
 })
 
@@ -75,9 +80,23 @@ export const getAllCategories = asyncHandler(async (req, res, next) => {
     populate: [
       { path: 'createdBy', select: 'userName , email , image' },
       { path: 'updatedBy', select: 'userName , email , image' },
+      { path: 'subCategory' },
     ],
     skip,
     limit,
   })
   res.status(200).json({ message: 'Done', category })
+})
+
+//Get Category By Id
+
+export const getCategoryById = asyncHandler(async (req, res, next) => {
+  const { id } = req.params
+
+  const category = await findById({ model: categoryModel, filter: { _id: id } })
+  if (!category) {
+    next(new Error('Cant Find This Category '), { cause: 400 })
+  } else {
+    res.status(200).json({ message: 'Done', category })
+  }
 })

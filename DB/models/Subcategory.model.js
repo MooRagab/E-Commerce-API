@@ -5,7 +5,7 @@ const subCategorySchema = new Schema(
     name: {
       type: String,
       required: [true, 'name is required'],
-      unique: [true, 'category name must be unique'],
+      unique: [true, 'SubCategory name must be unique'],
       min: [2, 'minimum length 2 char'],
       max: [20, 'max length 2 char'],
     },
@@ -15,7 +15,7 @@ const subCategorySchema = new Schema(
     createdBy: {
       type: Types.ObjectId,
       ref: 'User',
-      required: [true, 'Category owner is required'],
+      required: [true, 'SubCategory owner is required'],
     },
     updatedBy: {
       type: Types.ObjectId,
@@ -31,5 +31,5 @@ const subCategorySchema = new Schema(
   },
 )
 
-const subcategoryModel = model('Subcategory', subCategorySchema)
+const subcategoryModel = model('SubCategory', subCategorySchema)
 export default subcategoryModel
