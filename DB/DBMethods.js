@@ -8,31 +8,16 @@ export const find = async ({
   skip = 0,
   limit = 10,
 } = {}) => {
-  const result = await model
-    .find(filter)
-    .limit(limit)
-    .skip(skip)
-    .select(select)
-    .populate(populate)
+  const result = await model.find(filter).limit(limit).skip(skip).select(select).populate(populate)
   return result
 }
 
-export const findOne = async ({
-  model,
-  filter = {},
-  populate = [],
-  select = '',
-} = {}) => {
+export const findOne = async ({ model, filter = {}, populate = [], select = '' } = {}) => {
   const result = await model.findOne(filter).select(select).populate(populate)
   return result
 }
 
-export const findById = async ({
-  model,
-  filter = {},
-  populate = [],
-  select = '',
-} = {}) => {
+export const findById = async ({ model, filter = {}, populate = [], select = '' } = {}) => {
   const result = await model.findById(filter).select(select).populate(populate)
   return result
 }
@@ -83,10 +68,7 @@ export const findOneAndDelete = async ({
   select = '',
   populate = [],
 } = {}) => {
-  const result = await model
-    .findOneAndDelete(filter, data)
-    .select(select)
-    .populate(populate)
+  const result = await model.findOneAndDelete(filter, data).select(select).populate(populate)
   return result
 }
 
@@ -97,10 +79,7 @@ export const findByIdAndDelete = async ({
   select = '',
   populate = [],
 } = {}) => {
-  const result = await model
-    .findByIdAndDelete(filter, data)
-    .select(select)
-    .populate(populate)
+  const result = await model.findByIdAndDelete(filter, data).select(select).populate(populate)
   return result
 }
 
@@ -111,12 +90,7 @@ export const deleteOne = async ({ model, filter = {}, data = {} } = {}) => {
 
 //create
 
-export const create = async ({
-  model,
-  data = {},
-  select = '',
-  populate = [],
-} = {}) => {
+export const create = async ({ model, data = {}, select = '', populate = [] } = {}) => {
   const result = await model.create(data)
   return result
 }

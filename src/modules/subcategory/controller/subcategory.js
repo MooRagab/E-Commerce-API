@@ -1,9 +1,4 @@
-import {
-  create,
-  findById,
-  findByIdAndUpdate,
-  findOne,
-} from '../../../../DB/DBMethods.js'
+import { create, findById, findByIdAndUpdate, findOne } from '../../../../DB/DBMethods.js'
 import categoryModel from '../../../../DB/models/Category.model.js'
 import cloudinary from '../../../services/cloudinary.js'
 import { asyncHandler } from '../../../services/errorHandling.js'
@@ -25,10 +20,9 @@ export const createSubCategory = asyncHandler(async (req, res, next) => {
     if (!category) {
       next(new Error('Cant Find The Category'), { cause: 404 })
     } else {
-      const { secure_url, public_id } = await cloudinary.uploader.upload(
-        req.file.path,
-        { folder: `E-Commerce/Category/${category._id}` },
-      )
+      const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.path, {
+        folder: `E-Commerce/Category/${category._id}`,
+      })
       const { name } = req.body
       const subCategory = await create({
         model: subcategoryModel,
@@ -53,10 +47,9 @@ export const createSubCategory = asyncHandler(async (req, res, next) => {
 export const updateSubCategory = asyncHandler(async (req, res, next) => {
   const { id, categoryId } = req.params
   if (req.file) {
-    const { secure_url, public_id } = await cloudinary.uploader.upload(
-      req.file.path,
-      { folder: `E-Commerce/Category/${categoryId}` },
-    )
+    const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.path, {
+      folder: `E-Commerce/Category/${categoryId}`,
+    })
     req.body.image = secure_url
     req.body.imagePublicId = public_id
   }
@@ -85,4 +78,3 @@ export const updateSubCategory = asyncHandler(async (req, res, next) => {
       : next(new Error('Fail To Update The Category'), { cause: 400 })
   }
 })
-

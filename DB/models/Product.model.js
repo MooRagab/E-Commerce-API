@@ -48,7 +48,7 @@ const productSchema = new Schema(
     createdBy: {
       type: Types.ObjectId,
       ref: 'User',
-      required: [true, 'product owner is required'],
+      required: [true, 'Product Owner Is Required'],
     },
     updatedBy: {
       type: Types.ObjectId,

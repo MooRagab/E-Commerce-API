@@ -20,4 +20,5 @@ router.put(
   brandController.updateBrand,
 )
 
+router.get('/', brandController.getAllBrands)
 export default router

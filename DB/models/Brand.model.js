@@ -4,10 +4,10 @@ const brandSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, 'name is required'],
-      unique: [true, 'category name must be unique'],
-      min: [1, 'minimum length 2 char'],
-      max: [20, 'max length 2 char'],
+      required: [true, 'Name Is Required'],
+      unique: [true, 'Brand Name Must Be Unique'],
+      min: [1, 'Minimum Length 2 Char'],
+      max: [20, 'Max Length 2 Char'],
     },
     slug: String,
     image: String,
@@ -15,7 +15,7 @@ const brandSchema = new Schema(
     createdBy: {
       type: Types.ObjectId,
       ref: 'User',
-      required: [true, 'Category owner is required'],
+      required: [true, 'Brand owner is required'],
     },
     updatedBy: {
       type: Types.ObjectId,

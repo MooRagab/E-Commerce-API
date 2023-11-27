@@ -1,9 +1,4 @@
-import {
-  create,
-  find,
-  findById,
-  findByIdAndUpdate,
-} from '../../../../DB/DBMethods.js'
+import { create, find, findById, findByIdAndUpdate } from '../../../../DB/DBMethods.js'
 import categoryModel from '../../../../DB/models/Category.model.js'
 import cloudinary from '../../../services/cloudinary.js'
 import { asyncHandler } from '../../../services/errorHandling.js'
@@ -16,10 +11,9 @@ export const createCategory = asyncHandler(async (req, res, next) => {
   if (!req.file) {
     next(new Error('Image Is Required'), { cause: 400 })
   } else {
-    const { secure_url, public_id } = await cloudinary.uploader.upload(
-      req.file.path,
-      { folder: 'E-Commerce/Category' },
-    )
+    const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'E-Commerce/Category',
+    })
     const { name } = req.body
     const category = await create({
       model: categoryModel,
@@ -43,10 +37,9 @@ export const updateCategory = asyncHandler(async (req, res, next) => {
   const { id } = req.params
 
   if (req.file) {
-    const { secure_url, public_id } = await cloudinary.uploader.upload(
-      req.file.path,
-      { folder: 'E-Commerce/Category' },
-    )
+    const { secure_url, public_id } = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'E-Commerce/Category',
+    })
     req.body.image = secure_url
     req.body.imagePublicId = public_id
   }
