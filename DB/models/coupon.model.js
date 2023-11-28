@@ -5,7 +5,7 @@ const couponSchema = new Schema(
     name: {
       type: String,
       required: [true, 'name is required'],
-      unique: [true, 'category name must be unique'],
+      unique: [true, 'Coupon name must be unique'],
       min: [2, 'minimum length 2 char'],
       max: [20, 'max length 2 char'],
       trim: true,
@@ -13,7 +13,7 @@ const couponSchema = new Schema(
     createdBy: {
       type: Types.ObjectId,
       ref: 'User',
-      required: [true, 'Category owner is required'],
+      required: [true, 'Coupon owner is required'],
     },
     updatedBy: {
       type: Types.ObjectId,

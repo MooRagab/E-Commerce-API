@@ -37,7 +37,7 @@ app.use(`${baseUrl}/brand`, indexRouter.brandRouter)
 
 //in-valid Page
 app.use('*', (req, res, next) => {
-  res.send('In-Valid Routing Please Check Url  Or  Method')
+  res.status(404).send('404 Error Page Not Found')
 })
 
 //Error Handling

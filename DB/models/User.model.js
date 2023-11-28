@@ -1,5 +1,4 @@
 import { Schema, model, Types } from 'mongoose'
-// import { roles } from '../../src/middleware/auth.js'
 
 export const roles = {
   Admin: 'Admin',
