@@ -3,11 +3,12 @@ import endPoint from './product.endPoint.js'
 import { auth } from '../../middleware/auth.js'
 import * as productController from './controller/product.js'
 import { fileValidation, myMulter } from '../../services/multer.js'
-import  wishListRouter from '../wishlist/wishlist.router.js'
-
+import wishListRouter from '../wishlist/wishlist.router.js'
+import reviewRouter from '../reviews/reviews.router.js'
 const router = Router({ mergeParams: true })
 
 router.use('/:productId/wishlist', wishListRouter)
+router.use('/:productId/review', reviewRouter)
 
 router.post(
   '/',
